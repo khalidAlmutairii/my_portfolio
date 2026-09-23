@@ -1,1206 +1,1157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khalid F. Almutairi - Computer Science Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1020">
+    <meta name="description"
+        content="Khalid F. Almutairi — Information Technology student building deep learning, web, security and networking projects.">
+    <title>Khalid F. Almutairi | IT & AI Portfolio</title>
     <style>
+        :root {
+            color-scheme: dark;
+            --bg: #080d1a;
+            --surface: #121b2c;
+            --surface2: #192439;
+            --text: #eef4ff;
+            --muted: #a1b1ca;
+            --accent: #64e3cc;
+            --accent2: #92a9ff;
+            --line: #2c3b53;
+            --nav: rgba(8, 13, 26, .9);
+            --shadow: 0 22px 70px rgba(0, 0, 0, .25)
+        }
+
+        :root[data-theme="light"] {
+            color-scheme: light;
+            --bg: #f5f8fc;
+            --surface: #fff;
+            --surface2: #ebf2fa;
+            --text: #162438;
+            --muted: #51657f;
+            --accent: #087d71;
+            --accent2: #465bd6;
+            --line: #d4dfeb;
+            --nav: rgba(245, 248, 252, .94);
+            --shadow: 0 18px 55px rgba(32, 55, 78, .09)
+        }
+
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: #e2e8f0;
-            line-height: 1.6;
-            overflow-x: hidden;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            line-height: 1.7
         }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 25%;
-            width: 24rem;
-            height: 24rem;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(3rem);
-            animation: float 6s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
+        button,
+        a {
+            font: inherit
         }
 
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: 0;
-            right: 25%;
-            width: 24rem;
-            height: 24rem;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(3rem);
-            animation: float 8s ease-in-out infinite reverse;
-            z-index: 0;
-            pointer-events: none;
+        button {
+            cursor: pointer
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg)
+        }
+
+        .skip {
+            position: absolute;
+            top: -100px;
+            left: 12px;
+            z-index: 1000;
+            padding: 8px;
+            background: var(--surface)
+        }
+
+        .skip:focus {
+            top: 12px
         }
 
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            width: min(1120px, calc(100% - 40px));
+            margin: auto
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
+        .muted {
+            color: var(--muted)
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: .77rem
+        }
+
+        .section {
+            padding: 92px 0;
+            position: relative
+        }
+
+        .section-head {
+            margin-bottom: 30px
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            letter-spacing: -.045em;
+            margin: 5px 0 8px
+        }
+
+        .section-head p {
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0
+        }
+
+        .gradient {
+            background: linear-gradient(110deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .pill,
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid var(--line);
+            background: var(--surface2);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 5px 11px;
+            font-size: .78rem;
+            font-weight: 650
+        }
+
+        .chip {
+            color: var(--text)
+        }
+
+        .nav {
+            position: sticky;
             top: 0;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 1rem 0;
-            z-index: 100;
+            z-index: 50;
+            background: var(--nav);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(16px)
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .nav-inner {
+            min-height: 72px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            gap: 18px
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .brand {
+            font-size: 1.16rem;
+            font-weight: 900;
+            letter-spacing: -.05em
         }
 
-        .nav-menu {
-            display: none;
-            list-style: none;
-            gap: 2rem;
+        .brand span {
+            color: var(--accent)
         }
 
-        .nav-menu.active {
+        .nav-links {
             display: flex;
+            align-items: center;
+            gap: 22px
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: .9rem;
+            font-weight: 650
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent)
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .icon-btn {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 9px 12px
+        }
+
+        .menu-btn {
+            display: none
+        }
+
+        .hero {
+            min-height: calc(90vh - 72px);
+            display: flex;
+            align-items: center;
+            overflow: hidden
+        }
+
+        .hero:before {
+            content: "";
             position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            flex-direction: column;
-            background: rgba(30, 41, 59, 0.95);
-            padding: 2rem;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 85% 25%, rgba(100, 227, 204, .12), transparent 37%), radial-gradient(circle at 10% 80%, rgba(146, 169, 255, .12), transparent 36%)
         }
 
-        .nav-menu a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 60px;
+            align-items: center
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #60a5fa;
-            border-bottom: 2px solid #60a5fa;
-            padding-bottom: 5px;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #e2e8f0;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex !important;
-                position: static !important;
-                background: none !important;
-                flex-direction: row !important;
-                padding: 0 !important;
-                border: none !important;
-            }
-
-            .menu-toggle {
-                display: none !important;
-            }
-        }
-
-        /* Section Styling */
-        section {
-            min-height: 100vh;
-            padding: 6rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 60px;
-        }
-
-        .section-content {
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: #60a5fa;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            color: #cbd5e1;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hero Section */
-        #home {
-            text-align: center;
-            padding-top: 8rem;
-        }
-
-        .hero-avatar {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(59, 130, 246, 0.3));
-            border: 2px solid rgba(96, 165, 250, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            backdrop-filter: blur(10px);
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .hero-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: #60a5fa;
-            margin-bottom: 2rem;
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 5.5rem);
+            line-height: 1.08;
+            letter-spacing: -.065em;
+            margin: 14px 0 24px
         }
 
         .hero-description {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            color: #94a3b8;
-            font-size: 1.1rem;
+            color: var(--muted);
+            font-size: 1.07rem;
+            max-width: 630px;
+            margin-bottom: 28px
         }
 
-        .btn-group {
+        .hero-buttons,
+        .link-row {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out;
+            gap: 12px;
+            flex-wrap: wrap
         }
 
         .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+            padding: 12px 20px;
+            border-radius: 13px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform .2s, background .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--surface2)
         }
 
         .btn-primary {
-            background: linear-gradient(to right, #3b82f6, #2563eb);
-            color: white;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #06201c
         }
 
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            background: var(--accent);
+            filter: brightness(1.05)
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: #60a5fa;
-            border: 2px solid rgba(96, 165, 250, 0.5);
+        .hero-panel,
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: var(--shadow)
         }
 
-        .btn-secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #60a5fa;
+        .hero-panel {
+            padding: 26px;
+            position: relative
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 0.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #60a5fa;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .social-link:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-        }
-
-        .scroll-indicator {
-            text-align: center;
-            margin-top: 3rem;
-            animation: bounce 2s infinite;
-            font-size: 2rem;
-            color: #60a5fa;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .about-tags {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .tag {
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.2);
-            color: #60a5fa;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
-        }
-
-        .info-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .info-card p {
-            color: #94a3b8;
-        }
-
-        /* Experience */
-        .experience-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .experience-item {
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.3);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .experience-item:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            background: rgba(30, 41, 59, 0.5);
-        }
-
-        .experience-header {
+        .panel-top {
             display: flex;
             justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
+            align-items: center;
+            color: var(--muted);
+            font-size: .82rem;
+            margin-bottom: 26px
         }
 
-        .experience-title {
-            font-weight: 600;
-            color: #60a5fa;
-        }
-
-        .experience-date {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .experience-company {
-            color: #cbd5e1;
-            margin-bottom: 0.5rem;
-        }
-
-        .highlights {
+        .dots {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
+            gap: 6px
         }
 
-        .highlight {
-            font-size: 0.85rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+        .dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent2);
+            opacity: .75
         }
 
-        /* Projects Section */
-        .projects-grid {
+        .dots i:first-child {
+            background: #fc8f8f
+        }
+
+        .dots i:nth-child(2) {
+            background: #f2c572
+        }
+
+        .terminal {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: .95rem;
+            line-height: 2.05
+        }
+
+        .terminal .prompt {
+            color: var(--accent)
+        }
+
+        .terminal .value {
+            color: var(--accent2)
+        }
+
+        .terminal .comment {
+            color: var(--muted)
+        }
+
+        .mini-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .mini-stat {
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            padding: 13px
+        }
+
+        .mini-stat strong {
+            font-size: 1.35rem;
+            color: var(--accent)
+        }
+
+        .mini-stat small {
+            display: block;
+            color: var(--muted)
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 24px
+        }
+
+        .card {
+            padding: 27px
+        }
+
+        .card p {
+            color: var(--muted)
+        }
+
+        .card h3 {
+            margin: 0 0 11px;
+            font-size: 1.18rem
+        }
+
+        .fact {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .fact:last-child {
+            border: 0
+        }
+
+        .fact span {
+            color: var(--muted)
+        }
+
+        .fact strong {
+            text-align: right
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px
         }
 
         .project-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform .2s, border-color .2s
         }
 
         .project-card:hover {
-            transform: scale(1.05);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+            transform: translateY(-4px);
+            border-color: var(--accent2)
         }
 
-        .project-emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .project-feature {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0
         }
 
-        .project-code {
-            font-size: 0.75rem;
-            color: #60a5fa;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+        .project-art {
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px;
+            background: linear-gradient(135deg, #15283b, #153e42);
+            border-bottom: 1px solid var(--line)
         }
 
-        .project-category {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+        .project-feature .project-art {
+            min-height: 100%;
+            border-bottom: 0;
+            border-right: 1px solid var(--line)
         }
 
-        .project-title {
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            color: white;
+        .art-blue {
+            background: linear-gradient(135deg, #192a4a, #232d60)
         }
 
-        .project-description {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+        .art-violet {
+            background: linear-gradient(135deg, #242447, #433454)
         }
 
-        .tech-stack {
+        .art-slate {
+            background: linear-gradient(135deg, #162d3e, #18374a)
+        }
+
+        .project-art .art-symbol {
+            font-size: 3.2rem;
+            line-height: 1
+        }
+
+        .project-art .art-caption {
+            font-family: Consolas, monospace;
+            font-size: .82rem;
+            color: #d7fdf4
+        }
+
+        .project-body {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            flex: 1
+        }
+
+        .project-body h3 {
+            font-size: 1.35rem;
+            line-height: 1.35;
+            letter-spacing: -.025em;
+            margin: 12px 0
+        }
+
+        .project-body p {
+            color: var(--muted);
+            margin: 0 0 18px
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-top: auto
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 19px
+        }
+
+        .text-link {
+            color: var(--accent);
+            font-size: .9rem;
+            font-weight: 800
+        }
+
+        .text-link:hover {
+            text-decoration: underline
+        }
+
+        .metric-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 0 0 18px
+        }
+
+        .metric {
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface2)
+        }
+
+        .metric b {
+            color: var(--accent);
+            font-size: 1.18rem;
+            display: block
+        }
+
+        .metric small {
+            color: var(--muted)
+        }
+
+        details {
+            margin-top: 16px;
+            border-top: 1px solid var(--line);
+            padding-top: 12px
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--accent);
+            font-weight: 750
+        }
+
+        details p {
+            font-size: .92rem;
+            margin: 10px 0 0 !important
+        }
+
+        .filter-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 8px;
+            margin-bottom: 24px
         }
 
-        .tech-tag {
-            font-size: 0.8rem;
-            padding: 0.25rem 0.75rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border-radius: 0.3rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+        .filter {
+            padding: 8px 15px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--muted);
+            font-weight: 750
         }
 
-        .project-details {
-            display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        .filter[aria-pressed="true"] {
+            background: var(--accent);
+            color: #06201c;
+            border-color: var(--accent)
         }
 
-        .project-card.expanded .project-details {
-            display: block;
+        .project-card[hidden] {
+            display: none
         }
 
-        .detail-section {
-            margin-bottom: 1rem;
-        }
-
-        .detail-label {
-            font-weight: 600;
-            color: #60a5fa;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .detail-text {
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
         }
 
-        .skill-category {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        .skill-card {
+            padding: 23px
         }
 
-        .skill-category:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
+        .skill-card .symbol {
+            font-size: 1.55rem;
+            margin-bottom: 10px
         }
 
-        .skill-category h3 {
-            margin-bottom: 1.5rem;
+        .skill-card h3 {
+            margin: 0 0 14px
         }
 
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+        .skill-card .tags {
+            margin: 0
         }
 
-        .skill-item {
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border-radius: 0.5rem;
-            font-size: 0.9rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s ease;
+        .journey {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px
         }
 
-        .skill-item:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #60a5fa;
+        .journey-item {
+            padding: 21px 0;
+            border-bottom: 1px solid var(--line)
         }
 
-        /* Certificates Section */
-        .certificates-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .journey-item:last-child {
+            border: 0
         }
 
-        .certificate-item {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        .journey-item small {
+            color: var(--accent);
+            font-weight: 750
         }
 
-        .certificate-item:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateX(5px);
+        .journey-item h3 {
+            margin: 6px 0
         }
 
-        .cert-icon {
-            font-size: 3rem;
-            flex-shrink: 0;
+        .journey-item p {
+            margin: 0;
+            color: var(--muted)
         }
 
-        .cert-content {
-            flex-grow: 1;
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
         }
 
-        .cert-title {
-            font-weight: 600;
-            color: #60a5fa;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+        .certificate {
+            padding: 24px
         }
 
-        .cert-issuer {
-            color: #cbd5e1;
-            margin-bottom: 0.25rem;
+        .certificate .badge-icon {
+            font-size: 1.65rem
         }
 
-        .cert-date {
-            color: #94a3b8;
-            font-size: 0.9rem;
+        .certificate h3 {
+            margin: 14px 0 6px;
+            line-height: 1.4
         }
 
-        .cert-check {
-            font-size: 2rem;
-            opacity: 0.2;
+        .certificate p {
+            color: var(--muted);
+            margin: 0
         }
 
-        /* Contact Section */
-        .contact-content {
+        .notice {
+            font-size: .81rem;
+            color: var(--muted);
+            margin-top: 14px
+        }
+
+        .contact-panel {
             text-align: center;
+            padding: 42px 24px;
+            background: linear-gradient(125deg, var(--surface), var(--surface2));
+            border: 1px solid var(--line);
+            border-radius: 25px
+        }
+
+        .contact-panel h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 8px 0
+        }
+
+        .contact-panel p {
+            color: var(--muted);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 24px
         }
 
-        .contact-description {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
+        .contact-panel .hero-buttons {
+            justify-content: center
         }
 
-        .contact-buttons {
+        .footer {
+            padding: 28px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .footer-inner {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            color: var(--muted);
+            font-size: .88rem
         }
 
-        .contact-card {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            margin-top: 2rem;
+        .footer a {
+            color: var(--accent)
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        @media(max-width:900px) {
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-item a {
-            color: #60a5fa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: #a5d6ff;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 2rem 0;
-            text-align: center;
-            color: #94a3b8;
-            margin-top: 3rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.75rem;
-            }
-
-            section {
-                padding: 3rem 0;
-                min-height: auto;
-            }
-
+            .hero-layout,
             .about-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr
             }
 
-            .btn-group {
+            .hero-panel {
+                max-width: 590px
+            }
+
+            .skills-grid,
+            .certificate-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .hero {
+                min-height: auto
+            }
+
+            .project-feature {
+                grid-template-columns: 1fr
+            }
+
+            .project-feature .project-art {
+                min-height: 220px;
+                border-right: 0;
+                border-bottom: 1px solid var(--line)
+            }
+        }
+
+        @media(max-width:680px) {
+            .container {
+                width: min(100% - 28px, 1120px)
+            }
+
+            .section {
+                padding: 65px 0
+            }
+
+            .nav-inner {
+                min-height: 66px
+            }
+
+            .menu-btn {
+                display: inline-flex
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: var(--nav);
+                border-bottom: 1px solid var(--line);
+                padding: 20px;
                 flex-direction: column;
+                align-items: flex-start;
+                gap: 16px
             }
 
-            .btn {
-                width: 100%;
+            .nav-links.open {
+                display: flex
             }
 
-            .experience-header {
-                flex-direction: column;
+            .hero h1 {
+                font-size: clamp(2.45rem, 10vw, 4rem)
             }
 
-            .certificate-item {
-                flex-direction: column;
-                text-align: center;
+            .hero-layout {
+                gap: 30px
             }
 
-            .hero-title {
-                font-size: 1.5rem;
+            .project-grid,
+            .skills-grid,
+            .certificate-grid,
+            .journey {
+                grid-template-columns: 1fr
             }
 
-            .menu-toggle {
+            .project-feature {
+                grid-column: span 1
+            }
+
+            .card,
+            .project-body {
+                padding: 21px
+            }
+
+            .mini-stats {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .fact {
+                display: block
+            }
+
+            .fact strong {
                 display: block;
+                text-align: left
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *:before,
+            *:after {
+                animation: none !important;
+                transition: none !important
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">KFA</div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" onclick="navigateTo('home')">Home</a></li>
-                <li><a href="#about" onclick="navigateTo('about')">About</a></li>
-                <li><a href="#projects" onclick="navigateTo('projects')">Projects</a></li>
-                <li><a href="#skills" onclick="navigateTo('skills')">Skills</a></li>
-                <li><a href="#certificates" onclick="navigateTo('certificates')">Certificates</a></li>
-                <li><a href="#contact" onclick="navigateTo('contact')">Contact</a></li>
-            </ul>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+        <div class="container nav-inner"><a class="brand" href="#home">Khalid<span>.</span>dev</a>
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation"><a href="#home">Home</a><a
+                    href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a
+                    href="#journey">Experience</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-actions"><button class="icon-btn" id="themeBtn" type="button"
+                    aria-label="Switch color theme" title="Switch color theme">☀</button><button
+                    class="icon-btn menu-btn" id="menuBtn" type="button" aria-controls="navLinks" aria-expanded="false"
+                    aria-label="Open navigation">☰</button></div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home">
-        <div class="container">
-            <div class="section-content">
-                <div class="hero-avatar">💻</div>
-                <h1 class="hero-title">Khalid F. Almutairi</h1>
-                <p class="hero-subtitle">Information Technology Engineer | Systems, Security & AI</p>
-                <p class="hero-description">
-                    Information Technology Senior Student at Qassim University. I specialize in designing and managing resilient system architectures —spanning advanced cryptography desktop engineering , network defense configurations , and enterprise Linux infrastructure deployments. Beyond core IT, I cross-engineer data structures for lossless compression studio engines  and train production-level Deep Learning frameworks for medical Computer Vision automation. Driven by high-performance systems and backed by verified tracks in Cyber Operations and Generative AI.
-                </p>
-                <div class="btn-group">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    </header>
+    <main id="main">
+        <section class="section hero" id="home">
+            <div class="container hero-layout">
+                <div><span class="pill">● IT Student · Building with AI & Code</span>
+                    <h1>Hi, I'm <span class="gradient">Khalid F. Almutairi.</span></h1>
+                    <p class="hero-description">Information Technology student at Qassim University. I build practical
+                        projects across <strong style="color:var(--text)">deep learning, computer vision, web
+                            development, security, and Linux networking.</strong> From pediatric wrist X-ray analysis to
+                        real-time multiplayer web apps, I enjoy turning ideas into working systems.</p>
+                    <div class="hero-buttons"><a class="btn btn-primary" href="#projects">Explore my projects ↗</a><a
+                            class="btn" href="#contact">Get in touch →</a></div>
+                    <div class="link-row" style="margin-top:20px"><a class="text-link"
+                            href="https://github.com/khalidAlmutairii" target="_blank" rel="noopener noreferrer">GitHub
+                            ↗</a><a class="text-link" href="https://www.linkedin.com/in/khalid-almutairi-940913330"
+                            target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
                 </div>
-                <div class="social-links">
-                    <a href="https://github.com/khalidAlmutairii" class="social-link" title="GitHub">GH</a>
-                    <a href="www.linkedin.com/in/khalid-almutairi-940913330" class="social-link" title="LinkedIn">LI</a>
-                    <a href="mailto:khalid.aldhabti@hotmail.com" class="social-link" title="Email">✉</a>
-                </div>
-                <div class="scroll-indicator">↓</div>
+                <aside class="hero-panel" aria-label="Portfolio overview">
+                    <div class="panel-top"><span>khalid / portfolio</span><span class="dots"
+                            aria-hidden="true"><i></i><i></i><i></i></span></div>
+                    <div class="terminal">
+                        <div><span class="prompt">$</span> <span class="value">whoami</span></div>
+                        <div>Khalid F. Almutairi</div>
+                        <div class="comment">// Information Technology</div>
+                        <div><span class="prompt">$</span> <span class="value">focus --list</span></div>
+                        <div>AI · Web · Security · Networks</div>
+                        <div><span class="prompt">$</span> <span class="value">education --status</span></div>
+                        <div>Qassim University <span class="comment">(2026)</span></div>
+                    </div>
+                </aside>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-content">
-                <h2>About Me</h2>
+        </section>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">01 / About</span>
+                    <h2>Curiosity backed by <span class="gradient">hands-on work.</span></h2>
+                    <p>A bit about what I study, build, and want to learn next.</p>
+                </div>
                 <div class="about-grid">
-                    <div class="about-text">
-                        <p>I'm Khalid, a passionate Information Technology student at Qassim University with a deep interest in artificial intelligence and cybersecurity. My journey in tech is driven by curiosity about how secure systems work and how AI can solve real-world problems.</p>
-                        <p>My technical foundation spans cryptography, algorithms, networking, and full-stack development. I approach every project with a focus on clean code, security best practices, and creating solutions that matter.</p>
-                        <p>Currently, I'm exploring generative AI applications while maintaining expertise in cryptographic systems. I believe in continuous learning and taking on challenges that push my understanding of Information Technology fundamentals.</p>
-                        <div class="about-tags">
-                            <span class="tag">Bachelor's in IT</span>
-                            <span class="tag">Expected Dec 2026</span>
-                        </div>
-                    </div>
-                    <div class="info-cards">
-                        <div class="info-card">
-                            <h3>🎯 Core Focus</h3>
-                            <p>Artificial Intelligence, Cryptography, and Coding, Network</p>
-                        </div>
-                        <div class="info-card">
-                            <h3>📍 Location</h3>
-                            <p>Riyadh, Saudi Arabia</p>
-                        </div>
-                        <div class="info-card">
-                            <h3>🌍 Languages</h3>
-                            <p>Arabic (Native) • English (Fluent)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 3rem; margin-bottom: 2rem;">Experience</h3>
-                <div class="experience-list">
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div>
-                                <div class="experience-title">Volunteer Network Workshop</div>
-                                <div class="experience-company">Qassim University</div>
-                            </div>
-                            <div class="experience-date">August 2025</div>
-                        </div>
-                        <div class="highlights">
-                            <span class="highlight">Networking fundamentals</span>
-                            <span class="highlight">Local network configuration</span>
-                            <span class="highlight">Hands-on Linux setup</span>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div>
-                                <div class="experience-title">Freelance Web Developer</div>
-                                <div class="experience-company">Self-Employed</div>
-                            </div>
-                            <div class="experience-date">June - July 2025</div>
-                        </div>
-                        <div class="highlights">
-                            <span class="highlight">Responsive web design</span>
-                            <span class="highlight">Full-stack development</span>
-                            <span class="highlight">Client collaboration</span>
-                            <span class="highlight">Frontend & Backend</span>
-                        </div>
-                    </div>
+                    <article class="card">
+                        <h3>About me</h3>
+                        <p>I'm an Information Technology student at Qassim University with an interest in using
+                            technology to solve tangible problems. My graduation project explores pediatric wrist
+                            fracture detection and classification from X-ray images, as a potential support tool for
+                            clinicians rather than a replacement for medical judgment.</p>
+                        <p>Beyond AI, I've developed web applications, worked with encryption and compression
+                            algorithms, and configured DNS in Linux. I value clear problem-solving, teamwork, and
+                            learning by building.</p>
+                        <div class="tags"><span class="chip">Artificial Intelligence</span><span class="chip">Software
+                                Development</span><span class="chip">Networking</span><span
+                                class="chip">Cybersecurity</span></div>
+                    </article>
+                    <aside class="card">
+                        <h3>Quick profile</h3>
+                        <div class="fact"><span>Education</span><strong>Bachelor's in IT</strong></div>
+                        <div class="fact"><span>University</span><strong>Qassim University</strong></div>
+                        <div class="fact"><span>Expected graduation</span><strong>December 2026</strong></div>
+                        <div class="fact"><span>Languages</span><strong>Arabic · English</strong></div>
+                        <div class="fact"><span>Current focus</span><strong>AI & practical IT systems</strong></div>
+                    </aside>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-content">
-                <h2>Featured Projects</h2>
-                <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem;"></p>
-                
-                <div class="projects-grid">
-                    <div class="project-card" onclick="toggleProjectDetails(this)">
-                        <div class="project-emoji">📊</div>
-                        <div class="project-code">IT443</div>
-                        <h3 class="project-title">Text Compression Studio</h3>
-                        <p class="project-category">Data Structures & Algorithms</p>
-                        <p class="project-description">Interactive desktop application implementing Huffman Coding and Lempel-Ziv-Welch (LZW) algorithms for lossless data compression with real-time performance metrics.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python 3.13</span>
-                            <span class="tech-tag">Tkinter</span>
-                            <span class="tech-tag">Algorithms</span>
+        </section>
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">02 / Projects</span>
+                    <h2>Things I've <span class="gradient">built.</span></h2>
+                    <p>Explore my graduation research and hands-on projects. Use the filters to find work by area.</p>
+                </div>
+                <div class="filter-row" role="group" aria-label="Filter projects"><button class="filter" type="button"
+                        data-filter="all" aria-pressed="true">All projects</button><button class="filter" type="button"
+                        data-filter="ai" aria-pressed="false">AI & Computer Vision</button><button class="filter"
+                        type="button" data-filter="web" aria-pressed="false">Web</button><button class="filter"
+                        type="button" data-filter="security" aria-pressed="false">Security</button><button
+                        class="filter" type="button" data-filter="network"
+                        aria-pressed="false">Networking</button><button class="filter" type="button"
+                        data-filter="algorithms" aria-pressed="false">Algorithms</button></div>
+                <div class="project-grid" id="projectGrid">
+                    <article class="card project-card project-feature" data-category="ai">
+                        <div class="project-art"><span class="pill"
+                                style="width:max-content;color:#c9fff5;background:#163c3e;border-color:#35756f">Graduation
+                                Project · Team Lead</span>
+                            <div class="art-symbol" aria-hidden="true">✳</div>
+                            <div class="art-caption">X-ray → preprocessing → detection & classification</div>
                         </div>
-                        <div class="project-details">
-                            <div class="detail-section">
-                                <div class="detail-label">Key Features</div>
-                                <div class="detail-text">• Huffman Coding with prefix-free tree<br>• LZW dictionary-based compression<br>• Real-time compression metrics<br>• Lossless decompression verification</div>
+                        <div class="project-body"><span class="eyebrow">Medical Computer Vision</span>
+                            <h3>AI-Based Wrist Fracture Detection & Classification</h3>
+                            <p>Developing an AI-based workflow for pediatric wrist X-rays, combining CNN classification
+                                with object detection to identify whether a fracture may be present and where it
+                                appears. Designed as decision support, not an autonomous diagnosis.</p>
+                            <div class="metric-row">
+                                <div class="metric"><b>20,327</b><small>Images in dataset</small></div>
+                                <div class="metric"><b>93.65%</b><small>DenseNet121 test accuracy*</small></div>
                             </div>
-                            <div class="detail-section">
-                                <div class="detail-label">Result</div>
-                                <div class="detail-text">40-60% compression ratios with accurate performance tracking</div>
+                            <div class="tags"><span class="chip">Python</span><span class="chip">PyTorch</span><span
+                                    class="chip">DenseNet121</span><span class="chip">YOLO</span><span
+                                    class="chip">Image Preprocessing</span><span class="chip">Model Evaluation</span>
                             </div>
+                            <details>
+                                <summary>View technical approach</summary>
+                                <p>Used the GRAZPEDWRI-DX pediatric wrist X-ray dataset. Explored a DenseNet121
+                                    classifier with image normalization and evaluation using accuracy, precision,
+                                    recall, F1-score and ROC-AUC; worked on YOLO-based fracture localization as a
+                                    separate detection task. The reported accuracy is for the classifier on the project
+                                    test split, not a result for the detection model.</p>
+                            </details>
+                            <p class="notice">* Research/project evaluation only. No independent clinical validation is
+                                claimed.</p>
                         </div>
-                    </div>
-
-                    <div class="project-card" onclick="toggleProjectDetails(this)">
-                        <div class="project-emoji">🔐</div>
-                        <div class="project-code">MATH319</div>
-                        <h3 class="project-title">Secure File Storage AES</h3>
-                        <p class="project-category">Cryptography & Security</p>
-                        <p class="project-description">Desktop encryption system featuring AES-256-CBC encryption, SHA-256 authentication, time-lock access control, and QR token recovery.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">PyCryptodome</span>
-                            <span class="tech-tag">AES-256-CBC</span>
+                    </article>
+                    <article class="card project-card" data-category="web">
+                        <div class="project-art art-blue"><span class="pill"
+                                style="width:max-content;color:#d8e0ff;background:#25396b;border-color:#5365a0">Personal
+                                Project</span>
+                            <div class="art-symbol" aria-hidden="true">⚽</div>
+                            <div class="art-caption">multiplayer room / real-time sync</div>
                         </div>
-                        <div class="project-details">
-                            <div class="detail-section">
-                                <div class="detail-label">Key Features</div>
-                                <div class="detail-text">• AES-256-CBC with unique IVs<br>• SHA-256 password hashing<br>• Time-lock mechanism<br>• QR token backup system</div>
-                            </div>
-                            <div class="detail-section">
-                                <div class="detail-label">Result</div>
-                                <div class="detail-text">Secure system with 100% lossless encryption/decryption</div>
-                            </div>
+                        <div class="project-body"><span class="eyebrow">Web Application</span>
+                            <h3>Ahli Challenge</h3>
+                            <p>Built and published a football quiz game for Al-Ahli fans, with player accounts, private
+                                rooms and real-time multiplayer gameplay using Firebase.</p>
+                            <div class="tags"><span class="chip">HTML</span><span class="chip">CSS</span><span
+                                    class="chip">JavaScript</span><span class="chip">Firebase</span><span
+                                    class="chip">GitHub Pages</span></div>
+                            <div class="project-links"><a class="text-link"
+                                    href="https://khalidalmutairii.github.io/ahliChallnge-Q/" target="_blank"
+                                    rel="noopener noreferrer">Live website ↗</a><a class="text-link"
+                                    href="https://github.com/khalidAlmutairii/ahliChallnge-Q" target="_blank"
+                                    rel="noopener noreferrer">Source code ↗</a></div>
                         </div>
-                    </div>
-
-                    <div class="project-card" onclick="toggleProjectDetails(this)">
-                        <div class="project-emoji">🌐</div>
-                        <div class="project-code">IT361</div>
-                        <h3 class="project-title">DNS Server Configuration</h3>
-                        <p class="project-category">Networking & Systems</p>
-                        <p class="project-description">Complete DNS server setup on Linux using BIND9 with forward/reverse resolution, custom domain configuration, and testing.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">BIND9</span>
-                            <span class="tech-tag">Linux</span>
-                            <span class="tech-tag">DNS Protocol</span>
+                    </article>
+                    <article class="card project-card" data-category="security">
+                        <div class="project-art art-violet"><span class="pill"
+                                style="width:max-content;color:#e8deff;background:#44345b;border-color:#77658e">Course
+                                Project</span>
+                            <div class="art-symbol" aria-hidden="true">◇</div>
+                            <div class="art-caption">encryption / local file storage</div>
                         </div>
-                        <div class="project-details">
-                            <div class="detail-section">
-                                <div class="detail-label">Key Features</div>
-                                <div class="detail-text">• Forward & reverse DNS zones<br>• ACL-based access control<br>• Global DNS parameters<br>• Cross-platform testing</div>
-                            </div>
-                            <div class="detail-section">
-                                <div class="detail-label">Result</div>
-                                <div class="detail-text">Fully functional DNS infrastructure with confirmed resolution</div>
-                            </div>
+                        <div class="project-body"><span class="eyebrow">Security & Cryptography</span>
+                            <h3>Secure File Storage – AES</h3>
+                            <p>Created a Python-based file storage application using AES-256-CBC encryption, SHA-256
+                                password hashing and a QR-token recovery mechanism.</p>
+                            <div class="tags"><span class="chip">Python</span><span class="chip">AES-256-CBC</span><span
+                                    class="chip">SHA-256</span><span class="chip">Cryptography</span></div>
                         </div>
-                    </div>
-
-                    <div class="project-card" onclick="toggleProjectDetails(this)">
-                        <div class="project-emoji">📱</div>
-                        <div class="project-code">IT362</div>
-                        <h3 class="project-title">Social Media Impact Analysis</h3>
-                        <p class="project-category">Research & Digital Ethics</p>
-                        <p class="project-description">Comprehensive research examining ethical, social, legal, and professional implications of social media platforms.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Research</span>
-                            <span class="tech-tag">Critical Analysis</span>
-                            <span class="tech-tag">Digital Ethics</span>
+                    </article>
+                    <article class="card project-card" data-category="network">
+                        <div class="project-art art-slate"><span class="pill"
+                                style="width:max-content;color:#d4f4ff;background:#234257;border-color:#426c80">Course
+                                Project</span>
+                            <div class="art-symbol" aria-hidden="true">⌘</div>
+                            <div class="art-caption">Linux / local network / DNS</div>
                         </div>
-                        <div class="project-details">
-                            <div class="detail-section">
-                                <div class="detail-label">Key Features</div>
-                                <div class="detail-text">• Ethical impact assessment<br>• Social consequence analysis<br>• Legal framework examination<br>• Evidence-based recommendations</div>
-                            </div>
-                            <div class="detail-section">
-                                <div class="detail-label">Result</div>
-                                <div class="detail-text">Comprehensive framework for understanding social media's impact</div>
-                            </div>
+                        <div class="project-body"><span class="eyebrow">Networks & Systems</span>
+                            <h3>DNS System in Linux</h3>
+                            <p>Configured and tested a custom DNS setup for a local Linux network, collaborating with
+                                the project team to implement domain-name resolution.</p>
+                            <div class="tags"><span class="chip">Linux</span><span class="chip">DNS</span><span
+                                    class="chip">Networking</span><span class="chip">Team Leadership</span></div>
                         </div>
-                    </div>
+                    </article>
+                    <article class="card project-card" data-category="algorithms">
+                        <div class="project-art art-violet"><span class="pill"
+                                style="width:max-content;color:#e8deff;background:#44345b;border-color:#77658e">Course
+                                Project</span>
+                            <div class="art-symbol" aria-hidden="true">{ }</div>
+                            <div class="art-caption">Huffman / LZW / compression</div>
+                        </div>
+                        <div class="project-body"><span class="eyebrow">Algorithms & Desktop Apps</span>
+                            <h3>Lossless Compression Suite</h3>
+                            <p>Built an interactive desktop application demonstrating Huffman Coding and LZW
+                                compression, with metrics to compare compression behavior.</p>
+                            <div class="tags"><span class="chip">Python</span><span class="chip">Huffman
+                                    Coding</span><span class="chip">LZW</span><span class="chip">Algorithms</span></div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-content">
-                <h2>Technical Skills</h2>
-                <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem;">Expertise and proficiencies</p>
-                
+        </section>
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">03 / Skills</span>
+                    <h2>My technical <span class="gradient">toolkit.</span></h2>
+                    <p>Technologies and concepts I've worked with through coursework and projects.</p>
+                </div>
                 <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Python</span>
-                            <span class="skill-item">JavaScript</span>
-                            <span class="skill-item">HTML</span>
-                            <span class="skill-item">CSS</span>
-                            <span class="skill-item">Bash</span>
+                    <article class="card skill-card">
+                        <div class="symbol">✳</div>
+                        <h3>AI & Computer Vision</h3>
+                        <div class="tags"><span class="chip">Deep Learning</span><span class="chip">CNNs</span><span
+                                class="chip">PyTorch</span><span class="chip">DenseNet121</span><span
+                                class="chip">YOLO</span><span class="chip">Transfer Learning</span><span
+                                class="chip">Image Preprocessing</span><span class="chip">Model Evaluation</span></div>
+                    </article>
+                    <article class="card skill-card">
+                        <div class="symbol">⌨</div>
+                        <h3>Programming & Web</h3>
+                        <div class="tags"><span class="chip">Python</span><span class="chip">JavaScript</span><span
+                                class="chip">HTML</span><span class="chip">CSS</span><span
+                                class="chip">Bootstrap</span><span class="chip">Firebase</span><span
+                                class="chip">Responsive Design</span></div>
+                    </article>
+                    <article class="card skill-card">
+                        <div class="symbol">⌁</div>
+                        <h3>Networking & Linux</h3>
+                        <div class="tags"><span class="chip">Linux</span><span class="chip">DNS</span><span
+                                class="chip">Local Network Setup</span><span class="chip">Networking Fundamentals</span>
                         </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Cryptography</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">AES Encryption</span>
-                            <span class="skill-item">SHA-256</span>
-                            <span class="skill-item">DNSSEC</span>
-                            <span class="skill-item">Key Management</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Algorithms</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Huffman Coding</span>
-                            <span class="skill-item">LZW Compression</span>
-                            <span class="skill-item">Data Structures</span>
-                            <span class="skill-item">Search & Sort</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Networking</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">DNS/BIND9</span>
-                            <span class="skill-item">TCP/IP</span>
-                            <span class="skill-item">Network Config</span>
-                            <span class="skill-item">Linux Admin</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Frameworks</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Tkinter</span>
-                            <span class="skill-item">Flask</span>
-                            <span class="skill-item">Bootstrap</span>
-                            <span class="skill-item">React</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Security</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Cryptography</span>
-                            <span class="skill-item">Authentication</span>
-                            <span class="skill-item">Access Control</span>
-                            <span class="skill-item">Cybersecurity</span>
-                        </div>
-                    </div>
+                    </article>
+                    <article class="card skill-card">
+                        <div class="symbol">◇</div>
+                        <h3>Security & Cryptography</h3>
+                        <div class="tags"><span class="chip">AES Encryption</span><span class="chip">SHA-256</span><span
+                                class="chip">Cryptography</span><span class="chip">Authentication Concepts</span></div>
+                    </article>
+                    <article class="card skill-card">
+                        <div class="symbol">{ }</div>
+                        <h3>Algorithms & Tools</h3>
+                        <div class="tags"><span class="chip">Data Structures</span><span class="chip">Huffman
+                                Coding</span><span class="chip">LZW</span><span class="chip">Git</span><span
+                                class="chip">GitHub</span><span class="chip">Kaggle</span></div>
+                    </article>
+                    <article class="card skill-card">
+                        <div class="symbol">✦</div>
+                        <h3>Collaboration</h3>
+                        <div class="tags"><span class="chip">Problem Solving</span><span
+                                class="chip">Teamwork</span><span class="chip">Research</span><span
+                                class="chip">Communication</span><span class="chip">Time Management</span></div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Certificates Section -->
-    <section id="certificates">
-        <div class="container">
-            <div class="section-content">
-                <h2>Certifications</h2>
-                <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem;">Professional achievements and continuous learning</p>
-                
-                <div class="certificates-list">
-                    <div class="certificate-item">
-                        <div class="cert-icon">🤖</div>
-                        <div class="cert-content">
-                            <div class="cert-title">Generative AI Specialization</div>
-                            <div class="cert-issuer">Coursera</div>
-                            <div class="cert-date">December 2025</div>
+        </section>
+        <section class="section" id="journey">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">04 / Journey</span>
+                    <h2>Education & <span class="gradient">experience.</span></h2>
+                </div>
+                <div class="journey">
+                    <article class="card">
+                        <h3>Education</h3>
+                        <div class="journey-item"><small>Expected December 2026</small>
+                            <h3>Bachelor's Degree in Information Technology</h3>
+                            <p>Qassim University · Graduation project in pediatric wrist fracture detection and
+                                classification.</p>
                         </div>
-                        <div class="cert-check">✓</div>
-                    </div>
-
-                    <div class="certificate-item">
-                        <div class="cert-icon">🛡️</div>
-                        <div class="cert-content">
-                            <div class="cert-title">CompTIA Security+ (SY0-701)</div>
-                            <div class="cert-issuer">Coursera & Packt</div>
-                            <div class="cert-date">October 2025</div>
+                    </article>
+                    <article class="card">
+                        <h3>Experience & Volunteering</h3>
+                        <div class="journey-item"><small>June – July 2025</small>
+                            <h3>Freelance Web Developer</h3>
+                            <p>Developed responsive websites for local businesses using web technologies.</p>
                         </div>
-                        <div class="cert-check">✓</div>
-                    </div>
-
-                    <div class="certificate-item">
-                        <div class="cert-icon">💻</div>
-                        <div class="cert-content">
-                            <div class="cert-title">Programming & Web Development</div>
-                            <div class="cert-issuer">Sat.Codes</div>
-                            <div class="cert-date">July 2025</div>
+                        <div class="journey-item"><small>August 2025</small>
+                            <h3>Network Workshop · Qassim University</h3>
+                            <p>Participated as a volunteer in a workshop covering networking fundamentals and local
+                                network configuration.</p>
                         </div>
-                        <div class="cert-check">✓</div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-content">
-                <h2>Let's Connect</h2>
-                <div class="contact-content">
-                    <p class="contact-description">
-                        I'm always interested in discussing innovative projects, AI applications, and cybersecurity challenges. Feel free to reach out.
-                    </p>
-                    <div class="contact-buttons">
-                        <a href="mailto:khalid.aldhabti@hotmail.com" class="btn btn-primary">Send Email</a>
-                        <a href="https://github.com/khalidAlmutairii" class="btn btn-secondary">GitHub</a>
-                        <a href="www.linkedin.com/in/khalid-almutairi-940913330" class="btn btn-secondary">LinkedIn</a>
-                    </div>
-
-                    <div class="contact-card">
-                        <h3>Quick Info</h3>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <span>📧</span>
-                                <a href="mailto:khalid.aldhabti@hotmail.com">khalid.aldhabti@hotmail.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <span>📱</span>
-                                <a href="tel:0572071581">+966 57 207 1581</a>
-                            </div>
-                            <div class="contact-item">
-                                <span>📍</span>
-                                <span>Riyadh, Saudi Arabia</span>
-                            </div>
-                        </div>
-                    </div>
+        </section>
+        <section class="section" id="certificates">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">05 / Learning</span>
+                    <h2>Courses & <span class="gradient">certificates.</span></h2>
+                    <p>Completed learning paths and specialization courses.</p>
+                </div>
+                <div class="certificate-grid">
+                    <article class="card certificate">
+                        <div class="badge-icon">✳</div>
+                        <h3>Generative AI Specialization Path</h3>
+                        <p>Coursera</p>
+                    </article>
+                    <article class="card certificate">
+                        <div class="badge-icon">◇</div>
+                        <h3>CompTIA Security+ (SY0-701) Preparation Specialization</h3>
+                        <p>Coursera & Packt · October 2025</p>
+                        <p class="notice">Course completion; not the official CompTIA Security+ certification exam.</p>
+                    </article>
+                    <article class="card certificate">
+                        <div class="badge-icon">⌨</div>
+                        <h3>Programming & Web Development Path</h3>
+                        <p>Sat.Codes</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">© 2025 Khalid F. Almutairi.</p>
-        </div>
+        </section>
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-panel"><span class="eyebrow">06 / Contact</span>
+                    <h2>Have a project in mind? <span class="gradient">Let's connect.</span></h2>
+                    <p>Interested in collaboration, internships, or technical discussions? You can reach me by email or
+                        connect through GitHub and LinkedIn.</p>
+                    <div class="hero-buttons"><a class="btn btn-primary" href="mailto:khalid.aldhabti@hotmail.com">Send
+                            an email ↗</a><a class="btn" href="https://www.linkedin.com/in/khalid-almutairi-940913330"
+                            target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="btn"
+                            href="https://github.com/khalidAlmutairii" target="_blank" rel="noopener noreferrer">GitHub
+                            ↗</a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner"><span>© <span id="year">2026</span> Khalid F. Almutairi · Built with HTML,
+                CSS & JavaScript.</span><a href="#home">Back to top ↑</a></div>
     </footer>
-
-    <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Navigation
-        function navigateTo(sectionId) {
-            const section = document.getElementById(sectionId);
-            const menu = document.getElementById('navMenu');
-            
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                menu.classList.remove('active');
-                
-                // Update active nav link
-                document.querySelectorAll('.nav-menu a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                event.target.classList.add('active');
-            }
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navMenu');
-            const toggle = document.querySelector('.menu-toggle');
-            
-            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-
-        // Project card expansion
-        function toggleProjectDetails(card) {
-            card.classList.toggle('expanded');
-        }
-
-        // Smooth scroll spy for navigation
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        (() => { 'use strict'; const root = document.documentElement, themeBtn = document.getElementById('themeBtn'), menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('navLinks'); function setTheme(theme) { root.dataset.theme = theme; themeBtn.textContent = theme === 'light' ? '☾' : '☀'; themeBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'); try { localStorage.setItem('khalid-theme', theme) } catch (e) { } } let saved; try { saved = localStorage.getItem('khalid-theme') } catch (e) { } setTheme(saved === 'light' ? 'light' : 'dark'); themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'light' ? 'dark' : 'light')); menuBtn.addEventListener('click', () => { const open = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(open)); menuBtn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation') }); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false') })); document.addEventListener('click', e => { if (!e.target.closest('.nav-inner')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false') } }); document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => { const type = button.dataset.filter; document.querySelectorAll('.filter').forEach(b => b.setAttribute('aria-pressed', String(b === button))); document.querySelectorAll('.project-card').forEach(card => { card.hidden = type !== 'all' && card.dataset.category !== type }) })); const sections = [...document.querySelectorAll('main section[id]')], links = [...nav.querySelectorAll('a')]; if ('IntersectionObserver' in window) { const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id)) } }) }, { rootMargin: '-15% 0px -70% 0px' }); sections.forEach(s => observer.observe(s)) } document.getElementById('year').textContent = new Date().getFullYear() })();
     </script>
 </body>
+
 </html>
