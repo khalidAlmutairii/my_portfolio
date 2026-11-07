@@ -847,7 +847,7 @@
     <main id="main">
         <section class="section hero" id="home">
             <div class="container hero-layout">
-                <div><span class="pill">● IT Student · Building with AI & Code</span>
+                <div><span class="pill">● IT Student</span>
                     <h1>Hi, I'm <span class="gradient">Khalid F. Almutairi.</span></h1>
                     <p class="hero-description">Information Technology student at Qassim University. I build practical
                         projects across <strong style="color:var(--text)">deep learning, computer vision, web
@@ -1114,12 +1114,12 @@
                     <article class="card certificate">
                         <div class="badge-icon">✳</div>
                         <h3>Generative AI Specialization Path</h3>
-                        <p>Coursera</p>
+                        <p>IBM</p>
                     </article>
                     <article class="card certificate">
                         <div class="badge-icon">◇</div>
                         <h3>CompTIA Security+ (SY0-701) Preparation Specialization</h3>
-                        <p>Coursera & Packt · October 2025</p>
+                        <p> Packt · October 2025</p>
                         <p class="notice">Course completion; not the official CompTIA Security+ certification exam.</p>
                     </article>
                     <article class="card certificate">
@@ -1146,8 +1146,7 @@
         </section>
     </main>
     <footer class="footer">
-        <div class="container footer-inner"><span>© <span id="year">2026</span> Khalid F. Almutairi · Built with HTML,
-                CSS & JavaScript.</span><a href="#home">Back to top ↑</a></div>
+        <div class="container footer-inner"><span>© <span id="year">2026</span> Khalid F. Almutairi .</span><a href="#home">Back to top ↑</a></div>
     </footer>
     <script>
         (() => { 'use strict'; const root = document.documentElement, themeBtn = document.getElementById('themeBtn'), menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('navLinks'); function setTheme(theme) { root.dataset.theme = theme; themeBtn.textContent = theme === 'light' ? '☾' : '☀'; themeBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'); try { localStorage.setItem('khalid-theme', theme) } catch (e) { } } let saved; try { saved = localStorage.getItem('khalid-theme') } catch (e) { } setTheme(saved === 'light' ? 'light' : 'dark'); themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'light' ? 'dark' : 'light')); menuBtn.addEventListener('click', () => { const open = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(open)); menuBtn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation') }); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false') })); document.addEventListener('click', e => { if (!e.target.closest('.nav-inner')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false') } }); document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => { const type = button.dataset.filter; document.querySelectorAll('.filter').forEach(b => b.setAttribute('aria-pressed', String(b === button))); document.querySelectorAll('.project-card').forEach(card => { card.hidden = type !== 'all' && card.dataset.category !== type }) })); const sections = [...document.querySelectorAll('main section[id]')], links = [...nav.querySelectorAll('a')]; if ('IntersectionObserver' in window) { const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id)) } }) }, { rootMargin: '-15% 0px -70% 0px' }); sections.forEach(s => observer.observe(s)) } document.getElementById('year').textContent = new Date().getFullYear() })();
